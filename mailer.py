@@ -7,4 +7,14 @@ class Mailer(object):
 
     @event_handler('payments', 'payment_received')
     def send(self, payload):
-        print('Payment recieved', payload)
+        print(
+            f"""
+            Dear {payload['payee']['name']},
+
+            You have received a payment of {payload['payment']['amount']} {payload['payment']['currency']} from {payload['client']['name']} ({payload['client']['email']}).
+
+            Yours,
+
+            student.com
+            """
+        )
